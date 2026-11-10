@@ -1,0 +1,31 @@
+#!/bin/bash
+#PBS -N s144_mpi
+#PBS -q auto
+#PBS -l place=scatter
+#PBS -l select=4:ncpus=36:mpiprocs=36:ompthreads=1:mem=8gb
+#PBS -l walltime=00:30:00
+#PBS -j oe
+
+set -e
+cd "$PBS_O_WORKDIR"
+module load gompi/2023a
+
+export OMP_NUM_THREADS=1
+export OMP_DYNAMIC=FALSE
+export OMP_PROC_BIND=TRUE
+export OMP_PLACES=cores
+
+mkdir -p results/vanda_strong_144cpu_scatter/mpi
+
+echo "=== mpi 144 cores ==="
+echo "Date: $(date)"
+echo "PBS node allocation:"
+cat "$PBS_NODEFILE"
+
+for i in 1 2 3 4 5; do
+    mpirun -np 144 --hostfile "$PBS_NODEFILE" --map-by ppr:36:node:PE=1 --bind-to core \
+        ./tests/mpi_kmeans 2000000 10 5 42 overlap \
+        > results/vanda_strong_144cpu_scatter/mpi/run_${i}.txt
+done
+
+echo "=== Benchmark completed ==="

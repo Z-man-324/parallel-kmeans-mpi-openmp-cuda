@@ -1,0 +1,27 @@
+#!/bin/bash
+#PBS -N dsa5208_serial_base
+#PBS -q serial
+#PBS -l select=1:ncpus=1:mem=4gb
+#PBS -l walltime=00:15:00
+#PBS -j oe
+
+set -e
+cd "$PBS_O_WORKDIR"
+
+export LD_LIBRARY_PATH=/app1/centos6.3/gnu/gcc-7.3.0/lib64
+unset LD_PRELOAD
+
+mkdir -p results/serial_baseline
+
+echo "=== Serial Baseline Benchmark ==="
+echo "Node: $(hostname)"
+lscpu | grep 'Model name'
+
+for i in 1 2 3 4 5; do
+    echo "=== Repeat $i ==="
+
+    ./tests/serial_general 1000000 10 5 42 overlap \
+        > "results/serial_baseline/serial_${i}.txt"
+done
+
+echo "=== Serial Baseline completed ==="

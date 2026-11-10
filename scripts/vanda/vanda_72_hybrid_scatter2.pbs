@@ -1,0 +1,31 @@
+#!/bin/bash
+#PBS -N a72_hscatter2
+#PBS -q auto
+#PBS -l place=scatter
+#PBS -l select=2:ncpus=36:mpiprocs=12:ompthreads=3:mem=8gb
+#PBS -l walltime=00:30:00
+#PBS -j oe
+
+set -e
+cd "$PBS_O_WORKDIR"
+module load gompi/2023a
+
+export OMP_NUM_THREADS=3
+export OMP_DYNAMIC=FALSE
+export OMP_PROC_BIND=TRUE
+export OMP_PLACES=cores
+
+mkdir -p results/vanda_strong_72cpu_scatter2/hybrid
+
+echo "=== hybrid 72 cores ==="
+echo "Date: $(date)"
+echo "PBS node allocation:"
+cat "$PBS_NODEFILE"
+
+for i in 1 2 3 4 5; do
+    mpirun -np 24 --hostfile "$PBS_NODEFILE" --map-by ppr:12:node:PE=3 --bind-to core \
+        ./tests/hybrid_kmeans 2000000 10 5 42 overlap \
+        > results/vanda_strong_72cpu_scatter2/hybrid/run_${i}.txt
+done
+
+echo "=== Benchmark completed ==="

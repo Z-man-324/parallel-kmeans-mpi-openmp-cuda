@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620">
+<rect width="100%" height="100%" fill="white"/>
+<text x="480.0" y="42" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">Strong Scaling: Relative Speedup</text>
+<line x1="278.3734254943432" y1="100" x2="278.3734254943432" y2="510" stroke="#e5e7eb"/><text x="278.3734254943432" y="536" text-anchor="middle" font-family="Arial" font-size="13">50</text>
+<line x1="499.2422131708136" y1="100" x2="499.2422131708136" y2="510" stroke="#e5e7eb"/><text x="499.2422131708136" y="536" text-anchor="middle" font-family="Arial" font-size="13">100</text>
+<line x1="720.111000847284" y1="100" x2="720.111000847284" y2="510" stroke="#e5e7eb"/><text x="720.111000847284" y="536" text-anchor="middle" font-family="Arial" font-size="13">200</text>
+<line x1="115" y1="464.0630472151198" x2="895" y2="464.0630472151198" stroke="#e5e7eb"/><text x="103" y="469.0630472151198" text-anchor="end" font-family="Arial" font-size="13">0.5</text>
+<line x1="115" y1="382.9666402500495" x2="895" y2="382.9666402500495" stroke="#e5e7eb"/><text x="103" y="387.9666402500495" text-anchor="end" font-family="Arial" font-size="13">1</text>
+<line x1="115" y1="301.87023328497924" x2="895" y2="301.87023328497924" stroke="#e5e7eb"/><text x="103" y="306.87023328497924" text-anchor="end" font-family="Arial" font-size="13">2</text>
+<line x1="115" y1="194.66661452343368" x2="895" y2="194.66661452343368" stroke="#e5e7eb"/><text x="103" y="199.66661452343368" text-anchor="end" font-family="Arial" font-size="13">5</text>
+<line x1="115" y1="113.57020755836345" x2="895" y2="113.57020755836345" stroke="#e5e7eb"/><text x="103" y="118.57020755836345" text-anchor="end" font-family="Arial" font-size="13">10</text>
+<polyline points="173.69681848529433,382.9666402500495 394.5656061617648,301.87023328497924 615.4343938382352,220.77382631990895 836.3031815147057,139.67741935483872" fill="none" stroke="#777777" stroke-width="2" stroke-dasharray="7,5"/>
+<polyline points="173.69681848529433,382.9666402500495 394.5656061617648,334.8750181315443 615.4343938382352,470.3225806451613 836.3031815147057,296.3759732754694" fill="none" stroke="#2563eb" stroke-width="3"/>
+<circle cx="173.69681848529433" cy="382.9666402500495" r="6" fill="#2563eb"/>
+<circle cx="394.5656061617648" cy="334.8750181315443" r="6" fill="#2563eb"/>
+<circle cx="615.4343938382352" cy="470.3225806451613" r="6" fill="#2563eb"/>
+<circle cx="836.3031815147057" cy="296.3759732754694" r="6" fill="#2563eb"/>
+<circle cx="115" cy="73" r="5" fill="#2563eb"/><text x="128" y="78" font-family="Arial" font-size="15">MPI</text>
+<polyline points="173.69681848529433,382.9666402500495 394.5656061617648,340.9035530777122 615.4343938382352,273.72855776896415 836.3031815147057,208.63503481952262" fill="none" stroke="#dc2626" stroke-width="3"/>
+<circle cx="173.69681848529433" cy="382.9666402500495" r="6" fill="#dc2626"/>
+<circle cx="394.5656061617648" cy="340.9035530777122" r="6" fill="#dc2626"/>
+<circle cx="615.4343938382352" cy="273.72855776896415" r="6" fill="#dc2626"/>
+<circle cx="836.3031815147057" cy="208.63503481952262" r="6" fill="#dc2626"/>
+<circle cx="355" cy="73" r="5" fill="#dc2626"/><text x="368" y="78" font-family="Arial" font-size="15">HYBRID</text>
+<text x="480.0" y="596" text-anchor="middle" font-family="Arial" font-size="17">CPU cores (log scale)</text>
+<text transform="translate(28,310.0) rotate(-90)" text-anchor="middle" font-family="Arial" font-size="17">Speedup (log scale)</text>
+</svg>

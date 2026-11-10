@@ -1,0 +1,41 @@
+#!/bin/bash
+#PBS -N dsa5208_opt_compare
+#PBS -q parallel
+#PBS -l select=1:ncpus=12:mpiprocs=4:ompthreads=3:mem=4gb
+#PBS -l walltime=00:15:00
+#PBS -j oe
+
+set -e
+cd "$PBS_O_WORKDIR"
+
+source /app1/ebenv
+module load openmpi/4.1.1
+
+export LD_LIBRARY_PATH=/app1/centos6.3/gnu/gcc-7.3.0/lib64:/app1/centos7/gnu/openmpi-4.1.1/lib
+unset LIBRARY_PATH
+unset LD_PRELOAD
+
+export OMP_NUM_THREADS=3
+export OMP_DYNAMIC=FALSE
+export OMP_PROC_BIND=TRUE
+export OMP_PLACES=cores
+
+mkdir -p results/optimization_comparison
+
+echo "=== Hybrid Optimization Comparison ==="
+echo "Node: $(hostname)"
+lscpu | grep 'Model name'
+
+for i in 1 2 3 4 5; do
+    echo "=== Repeat $i ==="
+
+    mpirun -np 4 --map-by slot:PE=3 --bind-to core \
+        ./tests/hybrid_kmeans 1000000 10 5 42 overlap \
+        > "results/optimization_comparison/original_${i}.txt"
+
+    mpirun -np 4 --map-by slot:PE=3 --bind-to core \
+        ./tests/hybrid_kmeans_optimized 1000000 10 5 42 overlap \
+        > "results/optimization_comparison/optimized_${i}.txt"
+done
+
+echo "=== Optimization comparison completed ==="

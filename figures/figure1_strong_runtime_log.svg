@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620">
+<rect width="100%" height="100%" fill="white"/>
+<text x="480.0" y="42" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">Strong Scaling: Median Runtime</text>
+<line x1="278.3734254943432" y1="100" x2="278.3734254943432" y2="510" stroke="#e5e7eb"/><text x="278.3734254943432" y="536" text-anchor="middle" font-family="Arial" font-size="13">50</text>
+<line x1="499.2422131708136" y1="100" x2="499.2422131708136" y2="510" stroke="#e5e7eb"/><text x="499.2422131708136" y="536" text-anchor="middle" font-family="Arial" font-size="13">100</text>
+<line x1="720.111000847284" y1="100" x2="720.111000847284" y2="510" stroke="#e5e7eb"/><text x="720.111000847284" y="536" text-anchor="middle" font-family="Arial" font-size="13">200</text>
+<line x1="115" y1="422.12558539863056" x2="895" y2="422.12558539863056" stroke="#e5e7eb"/><text x="103" y="427.12558539863056" text-anchor="end" font-family="Arial" font-size="13">0.05</text>
+<line x1="115" y1="294.75566403661514" x2="895" y2="294.75566403661514" stroke="#e5e7eb"/><text x="103" y="299.75566403661514" text-anchor="end" font-family="Arial" font-size="13">0.1</text>
+<line x1="115" y1="167.38574267459967" x2="895" y2="167.38574267459967" stroke="#e5e7eb"/><text x="103" y="172.38574267459967" text-anchor="end" font-family="Arial" font-size="13">0.2</text>
+<polyline points="173.69681848529433,287.97478362825507 394.5656061617648,363.5074287433969 615.4343938382352,150.77364642592875 836.3031815147057,423.97398329670847" fill="none" stroke="#2563eb" stroke-width="3"/>
+<circle cx="173.69681848529433" cy="287.97478362825507" r="6" fill="#2563eb"/>
+<circle cx="394.5656061617648" cy="363.5074287433969" r="6" fill="#2563eb"/>
+<circle cx="615.4343938382352" cy="150.77364642592875" r="6" fill="#2563eb"/>
+<circle cx="836.3031815147057" cy="423.97398329670847" r="6" fill="#2563eb"/>
+<circle cx="115" cy="73" r="5" fill="#2563eb"/><text x="128" y="78" font-family="Arial" font-size="15">MPI</text>
+<polyline points="173.69681848529433,185.42133920192958 394.5656061617648,251.48557442374164 615.4343938382352,356.99054301814886 836.3031815147057,459.2263535740712" fill="none" stroke="#dc2626" stroke-width="3"/>
+<circle cx="173.69681848529433" cy="185.42133920192958" r="6" fill="#dc2626"/>
+<circle cx="394.5656061617648" cy="251.48557442374164" r="6" fill="#dc2626"/>
+<circle cx="615.4343938382352" cy="356.99054301814886" r="6" fill="#dc2626"/>
+<circle cx="836.3031815147057" cy="459.2263535740712" r="6" fill="#dc2626"/>
+<circle cx="355" cy="73" r="5" fill="#dc2626"/><text x="368" y="78" font-family="Arial" font-size="15">HYBRID</text>
+<text x="480.0" y="596" text-anchor="middle" font-family="Arial" font-size="17">CPU cores (log scale)</text>
+<text transform="translate(28,310.0) rotate(-90)" text-anchor="middle" font-family="Arial" font-size="17">Runtime (seconds) (log scale)</text>
+</svg>

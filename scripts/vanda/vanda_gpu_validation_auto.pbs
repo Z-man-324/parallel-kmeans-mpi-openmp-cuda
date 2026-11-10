@@ -1,0 +1,35 @@
+#!/bin/bash
+#PBS -N dsa5208_gpuauto
+#PBS -q auto
+#PBS -l select=1:ncpus=4:mpiprocs=1:ngpus=1:mem=8gb
+#PBS -l walltime=00:10:00
+#PBS -j oe
+
+set -e
+cd "$PBS_O_WORKDIR"
+
+module load CUDA/12.6.0
+module load gompi/2023a
+
+mkdir -p results/vanda_gpu_validation_auto
+
+echo "=== GPU Validation ==="
+echo "Node: $(hostname)"
+echo "Date: $(date)"
+
+nvidia-smi
+
+export OMP_NUM_THREADS=1
+export OMP_DYNAMIC=FALSE
+
+echo "=== CPU Reference ==="
+mpirun -np 1 ./tests/mpi_kmeans \
+    10000 10 5 42 overlap \
+    > results/vanda_gpu_validation_auto/cpu.txt
+
+echo "=== GPU Offloading ==="
+mpirun -np 1 ./tests/mpi_cuda_kmeans \
+    10000 10 5 42 overlap \
+    > results/vanda_gpu_validation_auto/gpu.txt
+
+echo "=== GPU Validation completed ==="

@@ -1,0 +1,54 @@
+#!/bin/bash
+#PBS -N dsa5208_weak12
+#PBS -q parallel
+#PBS -l select=1:ncpus=12:mpiprocs=12:mem=8gb
+#PBS -l walltime=00:15:00
+#PBS -j oe
+
+set -e
+cd "$PBS_O_WORKDIR"
+
+source /app1/ebenv
+module load openmpi/4.1.1
+
+# Avoid old MPI libraries while retaining GCC runtime.
+export LD_LIBRARY_PATH=/app1/centos6.3/gnu/gcc-7.3.0/lib64:/app1/centos7/gnu/openmpi-4.1.1/lib
+unset LIBRARY_PATH
+unset LD_PRELOAD
+
+export OMP_DYNAMIC=FALSE
+export OMP_PROC_BIND=TRUE
+export OMP_PLACES=cores
+
+mkdir -p results/weak_scaling_12cpu
+
+echo "=== DSA5208 12-CPU Benchmark ==="
+echo "Node: $(hostname)"
+lscpu | grep 'Model name'
+echo "PBS node allocation:"
+cat "$PBS_NODEFILE"
+
+echo "Checking MPI runtime:"
+ldd ./tests/mpi_kmeans | grep -E 'libmpi|libstdc|not found'
+
+N=120000
+D=10
+K=5
+SEED=42
+MODE=overlap
+
+for i in 1 2 3 4 5; do
+    echo "=== Repeat $i ==="
+
+    export OMP_NUM_THREADS=1
+    mpirun -np 12 --map-by slot:PE=1 --bind-to core \
+        ./tests/mpi_kmeans "$N" "$D" "$K" "$SEED" "$MODE" \
+        > "results/weak_scaling_12cpu/mpi_${i}.txt"
+
+    export OMP_NUM_THREADS=3
+    mpirun -np 4 --map-by slot:PE=3 --bind-to core \
+        ./tests/hybrid_kmeans "$N" "$D" "$K" "$SEED" "$MODE" \
+        > "results/weak_scaling_12cpu/hybrid_${i}.txt"
+done
+
+echo "=== Benchmark completed ==="

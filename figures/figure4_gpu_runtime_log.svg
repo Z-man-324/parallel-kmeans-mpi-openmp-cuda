@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620">
+<rect width="100%" height="100%" fill="white"/>
+<text x="480.0" y="42" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">CPU vs GPU: Median Runtime</text>
+<line x1="168.7931034482759" y1="100" x2="168.7931034482759" y2="510" stroke="#e5e7eb"/><text x="168.7931034482759" y="536" text-anchor="middle" font-family="Arial" font-size="13">100000</text>
+<line x1="324.3750054005278" y1="100" x2="324.3750054005278" y2="510" stroke="#e5e7eb"/><text x="324.3750054005278" y="536" text-anchor="middle" font-family="Arial" font-size="13">200000</text>
+<line x1="530.0430926472203" y1="100" x2="530.0430926472203" y2="510" stroke="#e5e7eb"/><text x="530.0430926472203" y="536" text-anchor="middle" font-family="Arial" font-size="13">500000</text>
+<line x1="685.6249945994723" y1="100" x2="685.6249945994723" y2="510" stroke="#e5e7eb"/><text x="685.6249945994723" y="536" text-anchor="middle" font-family="Arial" font-size="13">1e+06</text>
+<line x1="841.2068965517241" y1="100" x2="841.2068965517241" y2="510" stroke="#e5e7eb"/><text x="841.2068965517241" y="536" text-anchor="middle" font-family="Arial" font-size="13">2e+06</text>
+<line x1="115" y1="468.15984210206227" x2="895" y2="468.15984210206227" stroke="#e5e7eb"/><text x="103" y="473.15984210206227" text-anchor="end" font-family="Arial" font-size="13">0.05</text>
+<line x1="115" y1="403.4141607527572" x2="895" y2="403.4141607527572" stroke="#e5e7eb"/><text x="103" y="408.4141607527572" text-anchor="end" font-family="Arial" font-size="13">0.1</text>
+<line x1="115" y1="338.66847940345207" x2="895" y2="338.66847940345207" stroke="#e5e7eb"/><text x="103" y="343.66847940345207" text-anchor="end" font-family="Arial" font-size="13">0.2</text>
+<line x1="115" y1="253.07934420518097" x2="895" y2="253.07934420518097" stroke="#e5e7eb"/><text x="103" y="258.079344205181" text-anchor="end" font-family="Arial" font-size="13">0.5</text>
+<line x1="115" y1="188.3336628558759" x2="895" y2="188.3336628558759" stroke="#e5e7eb"/><text x="103" y="193.3336628558759" text-anchor="end" font-family="Arial" font-size="13">1</text>
+<line x1="115" y1="123.58798150657077" x2="895" y2="123.58798150657077" stroke="#e5e7eb"/><text x="103" y="128.58798150657077" text-anchor="end" font-family="Arial" font-size="13">2</text>
+<polyline points="168.7931034482759,470.3225806451613 530.0430926472203,298.5338199518738 685.6249945994723,208.6260198965926 841.2068965517241,139.67741935483872" fill="none" stroke="#2563eb" stroke-width="3"/>
+<circle cx="168.7931034482759" cy="470.3225806451613" r="6" fill="#2563eb"/>
+<circle cx="530.0430926472203" cy="298.5338199518738" r="6" fill="#2563eb"/>
+<circle cx="685.6249945994723" cy="208.6260198965926" r="6" fill="#2563eb"/>
+<circle cx="841.2068965517241" cy="139.67741935483872" r="6" fill="#2563eb"/>
+<circle cx="115" cy="73" r="5" fill="#2563eb"/><text x="128" y="78" font-family="Arial" font-size="15">CPU</text>
+<polyline points="168.7931034482759,345.8014943612565 530.0430926472203,296.0127681284774 685.6249945994723,229.77008214933835 841.2068965517241,178.01032776076664" fill="none" stroke="#dc2626" stroke-width="3"/>
+<circle cx="168.7931034482759" cy="345.8014943612565" r="6" fill="#dc2626"/>
+<circle cx="530.0430926472203" cy="296.0127681284774" r="6" fill="#dc2626"/>
+<circle cx="685.6249945994723" cy="229.77008214933835" r="6" fill="#dc2626"/>
+<circle cx="841.2068965517241" cy="178.01032776076664" r="6" fill="#dc2626"/>
+<circle cx="355" cy="73" r="5" fill="#dc2626"/><text x="368" y="78" font-family="Arial" font-size="15">GPU</text>
+<text x="480.0" y="596" text-anchor="middle" font-family="Arial" font-size="17">Number of data points (log scale)</text>
+<text transform="translate(28,310.0) rotate(-90)" text-anchor="middle" font-family="Arial" font-size="17">Runtime (seconds) (log scale)</text>
+</svg>

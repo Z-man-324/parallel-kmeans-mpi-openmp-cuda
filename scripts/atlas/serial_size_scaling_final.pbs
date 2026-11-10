@@ -1,0 +1,30 @@
+#!/bin/bash
+#PBS -N dsa5208_serial_size
+#PBS -q serial
+#PBS -l select=1:ncpus=1:mem=4gb
+#PBS -l walltime=00:20:00
+#PBS -j oe
+
+set -e
+cd "$PBS_O_WORKDIR"
+
+export LD_LIBRARY_PATH=/app1/centos6.3/gnu/gcc-7.3.0/lib64
+unset LD_PRELOAD
+
+mkdir -p results/serial_size_scaling
+
+echo "=== Serial Problem-size Scaling ==="
+echo "Node: $(hostname)"
+lscpu | grep 'Model name'
+
+for N in 100000 500000 2000000; do
+    for i in 1 2 3 4 5; do
+        echo "=== N=$N Repeat $i ==="
+
+        ./tests/serial_general \
+            "$N" 10 5 42 overlap \
+            > "results/serial_size_scaling/N${N}_serial_${i}.txt"
+    done
+done
+
+echo "=== Serial Scaling completed ==="

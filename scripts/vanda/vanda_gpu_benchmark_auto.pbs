@@ -1,0 +1,40 @@
+#!/bin/bash
+#PBS -N dsa5208_gpu_bench_auto
+#PBS -q auto
+#PBS -l select=1:ncpus=4:mpiprocs=1:ngpus=1:mem=8gb
+#PBS -l walltime=00:30:00
+#PBS -j oe
+
+set -e
+cd "$PBS_O_WORKDIR"
+
+module load CUDA/12.6.0
+module load gompi/2023a
+
+export OMP_NUM_THREADS=1
+export OMP_DYNAMIC=FALSE
+
+mkdir -p results/vanda_gpu_benchmark_auto
+
+echo "=== Vanda GPU Benchmark ==="
+echo "Node: $(hostname)"
+echo "Date: $(date)"
+nvidia-smi
+
+for N in 100000 500000 1000000 2000000; do
+    echo "=== N=$N ==="
+
+    for i in 1 2 3 4 5; do
+        echo "Repeat $i"
+
+        mpirun -np 1 ./tests/mpi_kmeans \
+            "$N" 10 5 42 overlap \
+            > "results/vanda_gpu_benchmark_auto/N${N}_cpu_${i}.txt"
+
+        mpirun -np 1 ./tests/mpi_cuda_kmeans \
+            "$N" 10 5 42 overlap \
+            > "results/vanda_gpu_benchmark_auto/N${N}_gpu_${i}.txt"
+    done
+done
+
+echo "=== GPU Benchmark completed ==="

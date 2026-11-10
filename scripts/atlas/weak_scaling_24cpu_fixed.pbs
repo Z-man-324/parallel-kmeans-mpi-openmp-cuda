@@ -1,0 +1,45 @@
+#!/bin/bash
+#PBS -N dsa5208_weak24_fixed
+#PBS -q parallel
+#PBS -l select=1:ncpus=24:mpiprocs=24:mem=8gb
+#PBS -l walltime=00:15:00
+#PBS -j oe
+
+set -e
+cd "$PBS_O_WORKDIR"
+
+MPI_HOME=/app1/centos7/gnu/openmpi-4.1.1
+export PATH="$MPI_HOME/bin:$PATH"
+
+export LD_LIBRARY_PATH=/app1/centos6.3/gnu/gcc-7.3.0/lib64:/app1/centos7/gnu/openmpi-4.1.1/lib
+unset LIBRARY_PATH
+unset LD_PRELOAD
+
+export OMP_DYNAMIC=FALSE
+export OMP_PROC_BIND=TRUE
+export OMP_PLACES=cores
+
+mkdir -p results/weak_scaling_24cpu_fixed
+
+echo "=== DSA5208 24-CPU Benchmark ==="
+echo "Node: $(hostname)"
+lscpu | grep 'Model name'
+
+echo "PBS allocation:"
+sort "$PBS_NODEFILE" | uniq -c
+
+for i in 1 2 3 4 5; do
+    echo "=== Repeat $i ==="
+
+    export OMP_NUM_THREADS=1
+    mpirun -np 24 --map-by slot:PE=1 --bind-to core \
+        ./tests/mpi_kmeans 240000 10 5 42 overlap \
+        > "results/weak_scaling_24cpu_fixed/mpi_${i}.txt"
+
+    export OMP_NUM_THREADS=3
+    mpirun -np 8 --map-by slot:PE=3 --bind-to core \
+        ./tests/hybrid_kmeans 240000 10 5 42 overlap \
+        > "results/weak_scaling_24cpu_fixed/hybrid_${i}.txt"
+done
+
+echo "=== 24-CPU Benchmark completed ==="
